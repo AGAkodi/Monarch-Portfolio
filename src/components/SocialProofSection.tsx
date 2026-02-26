@@ -8,7 +8,7 @@ const stats = [
 
 const SocialProofSection = () => {
   return (
-    <section className="py-24 px-6">
+    <section className="py-12 px-6">
       <div className="max-w-3xl mx-auto">
         <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-12">
           📊 Social Proof

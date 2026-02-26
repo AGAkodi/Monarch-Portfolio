@@ -3,7 +3,7 @@ import monarchPfp from "@/assets/monarch-pfp.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: "linear-gradient(hsl(43 90% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(43 90% 55%) 1px, transparent 1px)",
         backgroundSize: "60px 60px"

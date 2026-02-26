@@ -10,7 +10,7 @@ const links = [
 
 const ContactSection = () => {
   return (
-    <section className="py-24 px-6">
+    <section className="py-12 px-6">
       <div className="max-w-3xl mx-auto">
         <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-8">
           📩 Contact & Web3 Messaging
