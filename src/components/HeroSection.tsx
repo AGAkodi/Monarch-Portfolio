@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { Crown } from "lucide-react";
+import monarchPfp from "@/assets/monarch-pfp.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background grid */}
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: "linear-gradient(hsl(43 90% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(43 90% 55%) 1px, transparent 1px)",
         backgroundSize: "60px 60px"
@@ -15,10 +14,10 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="mb-6"
         >
-          <Crown className="w-12 h-12 text-primary mx-auto mb-6" />
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-gradient-gold mb-6">
+          <img src={monarchPfp} alt="Mønarch" className="w-24 h-24 rounded-full mx-auto mb-5 border-2 border-gold-glow shadow-gold object-cover" />
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-gradient-gold mb-4">
             Mønarch
           </h1>
           <p className="font-mono text-sm md:text-base text-muted-foreground tracking-wider uppercase">
@@ -35,12 +34,11 @@ const HeroSection = () => {
           Scaling Web3 adoption and education through localized micro-campaigns and community-led growth.
         </motion.p>
 
-        {/* Status card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-12 inline-block"
+          className="mt-10 inline-block"
         >
           <div className="border border-gold-glow bg-card/80 backdrop-blur-sm rounded-lg p-6 max-w-lg shadow-gold">
             <div className="flex items-center gap-3 mb-3">
