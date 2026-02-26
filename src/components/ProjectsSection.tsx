@@ -33,7 +33,7 @@ const ProjectsSection = () => {
     <section className="py-12 px-6">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-12">
-          🚀 Project / Case Highlights
+          Project / Case Highlights
         </h2>
         <div className="grid md:grid-cols-2 gap-4">
           {projects.map((project, i) => (
