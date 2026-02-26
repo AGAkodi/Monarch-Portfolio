@@ -38,7 +38,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10 inline-block"
+          className="mt-4 inline-block"
         >
           <div className="border border-gold-glow bg-card/80 backdrop-blur-sm rounded-lg p-6 max-w-lg shadow-gold">
             <div className="flex items-center gap-3 mb-3">
