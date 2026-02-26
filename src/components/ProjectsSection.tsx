@@ -30,7 +30,7 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <section className="py-24 px-6">
+    <section className="py-12 px-6">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-12">
           🚀 Project / Case Highlights
