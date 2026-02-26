@@ -33,7 +33,7 @@ const ExperienceSection = () => {
     <section className="py-12 px-6">
       <div className="max-w-3xl mx-auto">
         <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-12">
-          🏗 Experience / Proof of Work
+          Experience / Proof of Work
         </h2>
         <div className="space-y-0">
           {experiences.map((exp, i) => (

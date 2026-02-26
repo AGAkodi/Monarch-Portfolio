@@ -11,7 +11,7 @@ const AboutSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-8">
-            🧠 About Me
+            About Me
           </h2>
           <div className="space-y-5 text-secondary-foreground leading-relaxed text-lg">
             <p>

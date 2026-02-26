@@ -11,7 +11,7 @@ const SocialProofSection = () => {
     <section className="py-12 px-6">
       <div className="max-w-3xl mx-auto">
         <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-12">
-          📊 Social Proof
+          Social Proof
         </h2>
         <div className="space-y-8">
           {stats.map((stat, i) => (
