@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const tweetIds = [
   "1890334802605146363",
@@ -19,7 +20,7 @@ declare global {
   }
 }
 
-const TweetEmbed = ({ id, delay }: { id: string; delay: number }) => {
+const TweetEmbed = ({ id }: { id: string }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const TweetEmbed = ({ id, delay }: { id: string; delay: number }) => {
           theme: "dark",
           conversation: "none",
           dnt: "true",
+          width: "350",
         });
       }
     };
@@ -46,31 +48,73 @@ const TweetEmbed = ({ id, delay }: { id: string; delay: number }) => {
   }, [id]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="[&_iframe]:!rounded-lg [&_.twitter-tweet]:!m-0"
-    >
-      <div ref={ref} className="min-h-[200px]" />
-    </motion.div>
+    <div className="flex-shrink-0 w-[350px] [&_iframe]:!rounded-lg [&_.twitter-tweet]:!m-0">
+      <div ref={ref} className="min-h-[250px]" />
+    </div>
   );
 };
 
 const TweetsSection = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+  };
+
+  const scroll = (dir: "left" | "right") => {
+    scrollRef.current?.scrollBy({ left: dir === "left" ? -380 : 380, behavior: "smooth" });
+  };
+
   return (
     <section className="py-12 px-6">
       <div className="max-w-3xl mx-auto">
-        <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-12">
-          Featured Tweets
-        </h2>
-        <div className="grid gap-4">
-          {tweetIds.map((id, i) => (
-            <TweetEmbed key={id} id={id} delay={i * 0.1} />
-          ))}
+        <div className="flex items-center justify-between mb-12">
+          <h2 className="font-mono text-xs tracking-widest uppercase text-primary">
+            Featured Tweets
+          </h2>
+          <div className="flex gap-2">
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className="p-1.5 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className="p-1.5 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div
+          ref={scrollRef}
+          onScroll={checkScroll}
+          className="flex gap-4 overflow-x-auto scrollbar-hide px-[max(1.5rem,calc((100%-48rem)/2+1.5rem))] snap-x snap-mandatory"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {tweetIds.map((id) => (
+            <div key={id} className="snap-start">
+              <TweetEmbed id={id} />
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 };
