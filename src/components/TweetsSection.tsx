@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const tweetIds = [
   "1890334802605146363",
   "1884287724343156815",
-  "1955402450887905342",
+  "1994929999867244652",
   "1912648084145705134",
   "1867478847610138641",
+  "2019463352557457590",
 ];
 
 declare global {
@@ -31,7 +32,7 @@ const TweetEmbed = ({ id }: { id: string }) => {
           theme: "dark",
           conversation: "none",
           dnt: "true",
-          width: "350",
+          width: "320",
         });
       }
     };
@@ -39,17 +40,27 @@ const TweetEmbed = ({ id }: { id: string }) => {
     if (window.twttr) {
       renderTweet();
     } else {
-      const script = document.createElement("script");
-      script.src = "https://platform.twitter.com/widgets.js";
-      script.async = true;
-      script.onload = renderTweet;
-      document.head.appendChild(script);
+      const existing = document.querySelector('script[src="https://platform.twitter.com/widgets.js"]');
+      if (!existing) {
+        const script = document.createElement("script");
+        script.src = "https://platform.twitter.com/widgets.js";
+        script.async = true;
+        script.onload = renderTweet;
+        document.head.appendChild(script);
+      } else {
+        const check = setInterval(() => {
+          if (window.twttr) {
+            clearInterval(check);
+            renderTweet();
+          }
+        }, 100);
+      }
     }
   }, [id]);
 
   return (
-    <div className="flex-shrink-0 w-[350px] [&_iframe]:!rounded-lg [&_.twitter-tweet]:!m-0">
-      <div ref={ref} className="min-h-[250px]" />
+    <div className="flex-shrink-0 w-[320px] max-h-[350px] overflow-hidden rounded-lg [&_iframe]:!rounded-lg [&_.twitter-tweet]:!m-0">
+      <div ref={ref} className="min-h-[200px]" />
     </div>
   );
 };
@@ -58,16 +69,54 @@ const TweetsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const autoScrollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const checkScroll = () => {
+  const checkScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 0);
     setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
-  };
+  }, []);
 
   const scroll = (dir: "left" | "right") => {
-    scrollRef.current?.scrollBy({ left: dir === "left" ? -380 : 380, behavior: "smooth" });
+    scrollRef.current?.scrollBy({ left: dir === "left" ? -340 : 340, behavior: "smooth" });
+  };
+
+  // Auto-scroll
+  useEffect(() => {
+    const startAutoScroll = () => {
+      autoScrollRef.current = setInterval(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+        if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
+          el.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          el.scrollBy({ left: 340, behavior: "smooth" });
+        }
+      }, 4000);
+    };
+
+    startAutoScroll();
+    return () => {
+      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+    };
+  }, []);
+
+  // Pause auto-scroll on hover
+  const pauseAutoScroll = () => {
+    if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+  };
+  const resumeAutoScroll = () => {
+    pauseAutoScroll();
+    autoScrollRef.current = setInterval(() => {
+      const el = scrollRef.current;
+      if (!el) return;
+      if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        el.scrollBy({ left: 340, behavior: "smooth" });
+      }
+    }, 4000);
   };
 
   return (
@@ -101,11 +150,13 @@ const TweetsSection = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
+        onMouseEnter={pauseAutoScroll}
+        onMouseLeave={resumeAutoScroll}
       >
         <div
           ref={scrollRef}
           onScroll={checkScroll}
-          className="flex gap-4 overflow-x-auto scrollbar-hide px-[max(1.5rem,calc((100%-48rem)/2+1.5rem))] snap-x snap-mandatory"
+          className="flex gap-4 overflow-x-auto px-[max(1.5rem,calc((100%-48rem)/2+1.5rem))] snap-x snap-mandatory"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {tweetIds.map((id) => (
