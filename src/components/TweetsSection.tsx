@@ -59,8 +59,8 @@ const TweetEmbed = ({ id }: { id: string }) => {
   }, [id]);
 
   return (
-    <div className="flex-shrink-0 w-[320px] max-h-[350px] overflow-hidden rounded-lg [&_iframe]:!rounded-lg [&_.twitter-tweet]:!m-0">
-      <div ref={ref} className="min-h-[200px]" />
+    <div className="flex-shrink-0 w-[320px] h-[200px] overflow-hidden rounded-lg [&_iframe]:!rounded-lg [&_.twitter-tweet]:!m-0">
+      <div ref={ref} className="h-full" />
     </div>
   );
 };
