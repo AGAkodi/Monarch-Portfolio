@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const tweetIds = [
+  "2049432332361248797",
   "1890334802605146363",
   "1994929999867244652",
   "1912648084145705134",
