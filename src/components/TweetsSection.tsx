@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import t1 from "@/assets/tweets/t1.jpg";
+import t2 from "@/assets/tweets/t2.jpg";
+import t3 from "@/assets/tweets/t3.jpg";
+import t4 from "@/assets/tweets/t4.jpg";
+import t5 from "@/assets/tweets/t5.jpg";
+import t6 from "@/assets/tweets/t6.jpg";
+import t7 from "@/assets/tweets/t7.jpg";
 
 type Tweet = {
   id: string;
@@ -9,7 +16,7 @@ type Tweet = {
   author: string;
   date: string;
   title: string;
-  cover: string; // gradient classes
+  cover: string;
 };
 
 const tweets: Tweet[] = [
@@ -19,9 +26,8 @@ const tweets: Tweet[] = [
     handle: "@OxMonarch",
     author: "Mønarch",
     date: "May 15, 2026",
-    title:
-      "Latest drop from the Mønarch timeline — tap through to read on X.",
-    cover: "from-purple-900 via-fuchsia-700 to-pink-500",
+    title: "From Hype to Utility: The NFT Resurgence Story",
+    cover: t1,
   },
   {
     id: "2049432332361248797",
@@ -31,7 +37,7 @@ const tweets: Tweet[] = [
     date: "Apr 29, 2026",
     title:
       "The End of \u201CPrivate\u201D Messages: WhatsApp\u2019s Encryption Crisis and Why Wallet-to-Wallet Is the Future",
-    cover: "from-red-900 via-rose-700 to-amber-600",
+    cover: t2,
   },
   {
     id: "2019463352557457590",
@@ -41,7 +47,7 @@ const tweets: Tweet[] = [
     date: "Feb 2026",
     title:
       "HUGE congratulations to our top-performing Ambassadors — consistency, passion, and real commitment to the vision.",
-    cover: "from-slate-900 via-zinc-800 to-amber-700",
+    cover: t3,
   },
   {
     id: "1994929999867244652",
@@ -51,7 +57,7 @@ const tweets: Tweet[] = [
     date: "Nov 2025",
     title:
       "Starting a 30-day DeFi learning series from scratch — no prior assumptions, just knowledge.",
-    cover: "from-emerald-900 via-teal-700 to-cyan-600",
+    cover: t4,
   },
   {
     id: "1912648084145705134",
@@ -61,7 +67,7 @@ const tweets: Tweet[] = [
     date: "Apr 2025",
     title:
       "Staking is the future of passive income in crypto — Anatoly Yakovenko. But what's the reality?",
-    cover: "from-indigo-900 via-violet-700 to-fuchsia-600",
+    cover: t5,
   },
   {
     id: "1890334802605146363",
@@ -71,7 +77,7 @@ const tweets: Tweet[] = [
     date: "Feb 14, 2025",
     title:
       "The TL was Real Busy — the @levva_fi × @OpenCustody Merger forming a powerful AI-driven DeFi ecosystem.",
-    cover: "from-amber-700 via-yellow-600 to-orange-500",
+    cover: t6,
   },
   {
     id: "1867478847610138641",
@@ -81,7 +87,7 @@ const tweets: Tweet[] = [
     date: "Dec 2024",
     title:
       "I wasted this year's bull run and didn't even notice — a thread on Bitcoin dominance, altcoin season, and @dominationfi.",
-    cover: "from-orange-900 via-amber-700 to-yellow-500",
+    cover: t7,
   },
 ];
 
@@ -92,16 +98,18 @@ const TweetCard = ({ tweet }: { tweet: Tweet }) => (
     rel="noopener noreferrer"
     className="group flex-shrink-0 w-[320px] flex flex-col rounded-lg overflow-hidden border border-border bg-card hover:border-primary/60 transition-colors snap-start"
   >
-    {/* Cover */}
-    <div
-      className={`relative h-[140px] bg-gradient-to-br ${tweet.cover} flex items-center justify-center overflow-hidden`}
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_60%)]" />
-      <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px]" />
-      <span className="relative font-mono text-[10px] tracking-[0.3em] uppercase text-white/80">
-        {tweet.handle.replace("@", "")}
-      </span>
-      <div className="absolute top-2 right-2 w-6 h-6 rounded bg-black/40 backdrop-blur-sm flex items-center justify-center">
+    <div className="relative h-[160px] overflow-hidden bg-muted">
+      <img
+        src={tweet.cover}
+        alt={tweet.title}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+      />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/70 to-transparent" />
+      <div className="absolute bottom-2 left-3 font-mono text-[10px] tracking-[0.25em] uppercase text-white/90">
+        {tweet.handle}
+      </div>
+      <div className="absolute top-2 right-2 w-6 h-6 rounded bg-black/60 backdrop-blur-sm flex items-center justify-center">
         <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white" aria-hidden>
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
