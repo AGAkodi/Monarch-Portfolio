@@ -14,6 +14,16 @@ type Tweet = {
 
 const tweets: Tweet[] = [
   {
+    id: "2055203429400686979",
+    url: "https://twitter.com/OxMonarch/status/2055203429400686979",
+    handle: "@OxMonarch",
+    author: "Mønarch",
+    date: "May 15, 2026",
+    title:
+      "Latest drop from the Mønarch timeline — tap through to read on X.",
+    cover: "from-purple-900 via-fuchsia-700 to-pink-500",
+  },
+  {
     id: "2049432332361248797",
     url: "https://twitter.com/OxMonarch/status/2049432332361248797",
     handle: "@OxMonarch",
@@ -24,14 +34,14 @@ const tweets: Tweet[] = [
     cover: "from-red-900 via-rose-700 to-amber-600",
   },
   {
-    id: "1890334802605146363",
-    url: "https://twitter.com/OxMonarch/status/1890334802605146363",
-    handle: "@OxMonarch",
-    author: "Mønarch",
-    date: "Feb 14, 2025",
+    id: "2019463352557457590",
+    url: "https://twitter.com/ARMchain_pqc/status/2019463352557457590",
+    handle: "@ARMchain_pqc",
+    author: "ARMchain | Quantum-Secure",
+    date: "Feb 2026",
     title:
-      "The TL was Real Busy — the @levva_fi × @OpenCustody Merger forming a powerful AI-driven DeFi ecosystem.",
-    cover: "from-amber-700 via-yellow-600 to-orange-500",
+      "HUGE congratulations to our top-performing Ambassadors — consistency, passion, and real commitment to the vision.",
+    cover: "from-slate-900 via-zinc-800 to-amber-700",
   },
   {
     id: "1994929999867244652",
@@ -54,6 +64,16 @@ const tweets: Tweet[] = [
     cover: "from-indigo-900 via-violet-700 to-fuchsia-600",
   },
   {
+    id: "1890334802605146363",
+    url: "https://twitter.com/OxMonarch/status/1890334802605146363",
+    handle: "@OxMonarch",
+    author: "Mønarch",
+    date: "Feb 14, 2025",
+    title:
+      "The TL was Real Busy — the @levva_fi × @OpenCustody Merger forming a powerful AI-driven DeFi ecosystem.",
+    cover: "from-amber-700 via-yellow-600 to-orange-500",
+  },
+  {
     id: "1867478847610138641",
     url: "https://twitter.com/OxMonarch/status/1867478847610138641",
     handle: "@OxMonarch",
@@ -62,16 +82,6 @@ const tweets: Tweet[] = [
     title:
       "I wasted this year's bull run and didn't even notice — a thread on Bitcoin dominance, altcoin season, and @dominationfi.",
     cover: "from-orange-900 via-amber-700 to-yellow-500",
-  },
-  {
-    id: "2019463352557457590",
-    url: "https://twitter.com/ARMchain_pqc/status/2019463352557457590",
-    handle: "@ARMchain_pqc",
-    author: "ARMchain | Quantum-Secure",
-    date: "2026",
-    title:
-      "HUGE congratulations to our top-performing Ambassadors — consistency, passion, and real commitment to the vision.",
-    cover: "from-slate-900 via-zinc-800 to-amber-700",
   },
 ];
 
