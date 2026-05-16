@@ -30,27 +30,35 @@ const experiences = [
 
 const ExperienceSection = () => {
   return (
-    <section className="py-12 px-6">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-12">
-          Experience / Proof of Work
-        </h2>
-        <div className="space-y-0">
+    <section id="work" className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary">/ Experience</span>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold">Proof of work</h2>
+          </div>
+          <span className="hidden sm:block font-mono text-xs text-muted-foreground">{experiences.length.toString().padStart(2, "0")} roles</span>
+        </div>
+
+        <div className="grid grid-cols-12 gap-3 md:gap-4">
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative pl-8 pb-10 border-l border-border last:pb-0 group"
+              transition={{ duration: 0.45, delay: i * 0.06 }}
+              className="col-span-12 md:col-span-6 lg:col-span-4 surface-card rounded-2xl p-6 group hover:ring-ember transition-all"
             >
-              <div className="absolute left-0 top-1 w-2 h-2 rounded-full bg-primary -translate-x-[5px] group-hover:shadow-gold transition-shadow" />
-              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 mb-2">
-                <h3 className="text-foreground font-semibold">{exp.role}</h3>
-                <span className="font-mono text-sm text-primary">— {exp.org}</span>
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="w-2 h-2 rounded-full bg-primary group-hover:shadow-ember transition-shadow" />
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">{exp.description}</p>
+              <h3 className="text-lg font-semibold text-foreground">{exp.role}</h3>
+              <p className="font-mono text-xs text-primary mt-1">{exp.org}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-4">{exp.description}</p>
             </motion.div>
           ))}
         </div>

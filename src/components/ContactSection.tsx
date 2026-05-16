@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Send } from "lucide-react";
+import { Mail, Send, ArrowUpRight } from "lucide-react";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -22,39 +22,51 @@ const links = [
 
 const ContactSection = () => {
   return (
-    <section className="py-12 px-6">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="font-mono text-xs tracking-widest uppercase text-primary mb-8">
-          Contact & Web3 Messaging
-        </h2>
+    <section id="contact" className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="surface-card rounded-3xl p-8 md:p-12 relative overflow-hidden"
         >
-          <div className="space-y-4 text-secondary-foreground leading-relaxed mb-10">
-            <p>If you're building in Web3 and looking for support in research, community growth, or ambassador representation, feel free to reach out.</p>
-            <p>I'm open to collaborations, ecosystem contributions, and strategic growth discussions.</p>
-            <p className="text-muted-foreground text-sm">For privacy-focused conversations, Web3-native messaging options are welcome.</p>
-          </div>
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-ember opacity-20 blur-3xl rounded-full" />
 
-          <div className="grid sm:grid-cols-2 gap-3">
-            {links.map((link, i) => (
-              <a
-                key={i}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-gold-glow hover:shadow-gold transition-all duration-300 group"
-              >
-                <link.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                <div>
-                  <div className="font-mono text-xs text-muted-foreground">{link.label}</div>
-                  <div className="text-foreground text-sm">{link.value}</div>
-                </div>
-              </a>
-            ))}
+          <div className="relative grid grid-cols-12 gap-8">
+            <div className="col-span-12 md:col-span-6">
+              <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary">/ Contact</span>
+              <h2 className="mt-3 text-4xl md:text-5xl font-bold leading-tight">
+                Let's build<br /><span className="text-gradient-ember">something onchain.</span>
+              </h2>
+              <p className="mt-6 text-muted-foreground leading-relaxed max-w-md">
+                If you're building in Web3 and need support in research, community growth, or ambassador representation —
+                reach out. Open to collaborations, ecosystem contributions, and strategic growth.
+              </p>
+            </div>
+
+            <div className="col-span-12 md:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {links.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-3 p-4 bg-card/60 border border-border rounded-2xl hover:border-primary/50 hover:bg-card transition-all"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center shrink-0 group-hover:bg-gradient-ember transition-colors">
+                      <link.icon className="w-4 h-4 text-foreground group-hover:text-primary-foreground" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{link.label}</div>
+                      <div className="text-foreground text-sm truncate">{link.value}</div>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary shrink-0" />
+                </a>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
