@@ -96,7 +96,7 @@ const TweetCard = ({ tweet }: { tweet: Tweet }) => (
     href={tweet.url}
     target="_blank"
     rel="noopener noreferrer"
-    className="group flex-shrink-0 w-[320px] flex flex-col rounded-lg overflow-hidden border border-border bg-card hover:border-primary/60 transition-colors snap-start"
+    className="group flex-shrink-0 w-[320px] flex flex-col rounded-2xl overflow-hidden surface-card hover:ring-ember transition-all snap-start"
   >
     <div className="relative h-[160px] overflow-hidden bg-muted">
       <img
@@ -176,18 +176,19 @@ const TweetsSection = () => {
   };
 
   return (
-    <section className="py-12 px-6">
-      <div className="max-w-3xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="font-mono text-xs tracking-widest uppercase text-primary">
-            Featured Tweets
-          </h2>
+    <section id="tweets" className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary">/ Featured tweets</span>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold">Signal, not noise.</h2>
+          </div>
           <div className="flex gap-2">
             <button
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
               aria-label="Scroll left"
-              className="p-1.5 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="p-2 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -195,7 +196,7 @@ const TweetsSection = () => {
               onClick={() => scroll("right")}
               disabled={!canScrollRight}
               aria-label="Scroll right"
-              className="p-1.5 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="p-2 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -214,7 +215,7 @@ const TweetsSection = () => {
         <div
           ref={scrollRef}
           onScroll={checkScroll}
-          className="flex gap-4 overflow-x-auto px-[max(1.5rem,calc((100%-48rem)/2+1.5rem))] snap-x snap-mandatory pb-4"
+          className="flex gap-4 overflow-x-auto px-[max(1.5rem,calc((100%-72rem)/2+1.5rem))] snap-x snap-mandatory pb-4"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {tweets.map((t) => (
